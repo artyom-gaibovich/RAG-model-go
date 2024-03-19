@@ -11,16 +11,22 @@ type Initialization struct {
 	userSvc  service.UserService
 	UserCtrl controller.UserController
 	RoleRepo repository.RoleRepository
+	gptSvc   service.GPTService
+	GPTCtrl  controller.GPTController
 }
 
 func NewInitialization(userRepo repository.UserRepository,
 	userService service.UserService,
 	userCtrl controller.UserController,
-	roleRepo repository.RoleRepository) *Initialization {
+	roleRepo repository.RoleRepository,
+	gptSvc service.GPTService,
+	GPTCtrl controller.GPTController) *Initialization {
 	return &Initialization{
 		userRepo: userRepo,
 		userSvc:  userService,
 		UserCtrl: userCtrl,
 		RoleRepo: roleRepo,
+		gptSvc:   gptSvc,
+		GPTCtrl:  GPTCtrl,
 	}
 }

@@ -29,7 +29,15 @@ var roleRepoSet = wire.NewSet(repository.RoleRepositoryInit,
 	wire.Bind(new(repository.RoleRepository), new(*repository.RoleRepositoryImpl)),
 )
 
+var GPTServiceSet = wire.NewSet(service.GPTServiceInit,
+	wire.Bind(new(service.GPTService), new(*service.GPTServiceImpl)),
+)
+
+var GPTCtrlSet = wire.NewSet(controller.GPTControllerInit,
+	wire.Bind(new(controller.GPTController), new(*controller.GPTControllerImpl)),
+)
+
 func Init() *Initialization {
-	wire.Build(NewInitialization, db, userCtrlSet, userServiceSet, userRepoSet, roleRepoSet)
+	wire.Build(NewInitialization, db, userCtrlSet, userServiceSet, userRepoSet, roleRepoSet, GPTCtrlSet, GPTServiceSet)
 	return nil
 }

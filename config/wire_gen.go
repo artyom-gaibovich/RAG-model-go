@@ -21,7 +21,9 @@ func Init() *Initialization {
 	userServiceImpl := service.UserServiceInit(userRepositoryImpl)
 	userControllerImpl := controller.UserControllerInit(userServiceImpl)
 	roleRepositoryImpl := repository.RoleRepositoryInit(gormDB)
-	initialization := NewInitialization(userRepositoryImpl, userServiceImpl, userControllerImpl, roleRepositoryImpl)
+	gptServiceImpl := service.GPTServiceInit()
+	gptControllerImpl := controller.GPTControllerInit(gptServiceImpl)
+	initialization := NewInitialization(userRepositoryImpl, userServiceImpl, userControllerImpl, roleRepositoryImpl, gptServiceImpl, gptControllerImpl)
 	return initialization
 }
 
@@ -36,3 +38,7 @@ var userRepoSet = wire.NewSet(repository.UserRepositoryInit, wire.Bind(new(repos
 var userCtrlSet = wire.NewSet(controller.UserControllerInit, wire.Bind(new(controller.UserController), new(*controller.UserControllerImpl)))
 
 var roleRepoSet = wire.NewSet(repository.RoleRepositoryInit, wire.Bind(new(repository.RoleRepository), new(*repository.RoleRepositoryImpl)))
+
+var GPTServiceSet = wire.NewSet(service.GPTServiceInit, wire.Bind(new(service.GPTService), new(*service.GPTServiceImpl)))
+
+var GPTCtrlSet = wire.NewSet(controller.GPTControllerInit, wire.Bind(new(controller.GPTController), new(*controller.GPTControllerImpl)))

@@ -1,5 +1,7 @@
 package constant
 
+import "os"
+
 type ResponseStatus int
 type Headers int
 type General int
@@ -12,6 +14,17 @@ const (
 	InvalidRequest
 	Unauthorized
 )
+
+type ApiKeyGPT string
+
+func (a ApiKeyGPT) getApiKeyGPT() string {
+	return os.Getenv("API_KEY_GPT")
+}
+
+func GetApiKeyGPT() string {
+	apiKey := ApiKeyGPT("")
+	return apiKey.getApiKeyGPT()
+}
 
 func (r ResponseStatus) GetResponseStatus() string {
 	return [...]string{"SUCCESS", "DATA_NOT_FOUND", "UNKNOWN_ERROR", "INVALID_REQUEST", "UNAUTHORIZED"}[r-1]
