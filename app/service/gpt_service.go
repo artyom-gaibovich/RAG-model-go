@@ -9,6 +9,7 @@ import (
 	"rag-model/app/constant"
 	"rag-model/app/domain/dto"
 	"rag-model/app/pkg"
+	"strings"
 )
 
 type GPTService interface {
@@ -33,7 +34,7 @@ func (g GPTServiceImpl) GenerateText(c *gin.Context) {
 			Messages: []openai.ChatCompletionMessage{
 				{
 					Role:    openai.ChatMessageRoleUser,
-					Content: request.RequestText,
+					Content: createOneText(request.RequestTexts),
 				},
 			},
 		},
@@ -44,6 +45,11 @@ func (g GPTServiceImpl) GenerateText(c *gin.Context) {
 		pkg.PanicException(constant.UnknownError)
 	}
 	c.JSON(http.StatusOK, pkg.BuildResponse(constant.Success, resp.Choices[0].Message.Content))
+}
+
+func createOneText(textSlice []string) string {
+	readyText := strings.Join(textSlice, "\n")
+	return readyText
 }
 
 func GPTServiceInit() *GPTServiceImpl {
