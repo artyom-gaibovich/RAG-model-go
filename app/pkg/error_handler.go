@@ -2,9 +2,9 @@ package pkg
 
 import (
 	"fmt"
+	"github.com/APSN4/RAG-model-go/app/constant"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"rag-model/app/constant"
 	"strings"
 )
 

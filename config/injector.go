@@ -5,10 +5,10 @@
 package config
 
 import (
+	"github.com/APSN4/RAG-model-go/app/controller"
+	"github.com/APSN4/RAG-model-go/app/repository"
+	"github.com/APSN4/RAG-model-go/app/service"
 	"github.com/google/wire"
-	"rag-model/app/controller"
-	"rag-model/app/repository"
-	"rag-model/app/service"
 )
 
 var db = wire.NewSet(ConnectToDB)
@@ -37,7 +37,15 @@ var GPTCtrlSet = wire.NewSet(controller.GPTControllerInit,
 	wire.Bind(new(controller.GPTController), new(*controller.GPTControllerImpl)),
 )
 
+var LimitServiceSet = wire.NewSet(service.LimitServiceInit,
+	wire.Bind(new(service.LimitService), new(*service.LimitServiceImpl)),
+)
+
+var LimitCtrlSet = wire.NewSet(controller.LimitControllerInit,
+	wire.Bind(new(controller.LimitController), new(*controller.LimitControllerImpl)),
+)
+
 func Init() *Initialization {
-	wire.Build(NewInitialization, db, userCtrlSet, userServiceSet, userRepoSet, roleRepoSet, GPTCtrlSet, GPTServiceSet)
+	wire.Build(NewInitialization, db, userCtrlSet, userServiceSet, userRepoSet, roleRepoSet, GPTCtrlSet, GPTServiceSet, LimitCtrlSet, LimitServiceSet)
 	return nil
 }

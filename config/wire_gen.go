@@ -8,9 +8,9 @@ package config
 
 import (
 	"github.com/google/wire"
-	"rag-model/app/controller"
-	"rag-model/app/repository"
-	"rag-model/app/service"
+	"github.com/APSN4/RAG-model-go/app/controller"
+	"github.com/APSN4/RAG-model-go/app/repository"
+	"github.com/APSN4/RAG-model-go/app/service"
 )
 
 // Injectors from injector.go:
@@ -23,7 +23,9 @@ func Init() *Initialization {
 	roleRepositoryImpl := repository.RoleRepositoryInit(gormDB)
 	gptServiceImpl := service.GPTServiceInit()
 	gptControllerImpl := controller.GPTControllerInit(gptServiceImpl)
-	initialization := NewInitialization(userRepositoryImpl, userServiceImpl, userControllerImpl, roleRepositoryImpl, gptServiceImpl, gptControllerImpl)
+	limitServiceImpl := service.LimitServiceInit()
+	limitControllerImpl := controller.LimitControllerInit(limitServiceImpl)
+	initialization := NewInitialization(userRepositoryImpl, userServiceImpl, userControllerImpl, roleRepositoryImpl, gptServiceImpl, gptControllerImpl, limitServiceImpl, limitControllerImpl)
 	return initialization
 }
 
@@ -42,3 +44,7 @@ var roleRepoSet = wire.NewSet(repository.RoleRepositoryInit, wire.Bind(new(repos
 var GPTServiceSet = wire.NewSet(service.GPTServiceInit, wire.Bind(new(service.GPTService), new(*service.GPTServiceImpl)))
 
 var GPTCtrlSet = wire.NewSet(controller.GPTControllerInit, wire.Bind(new(controller.GPTController), new(*controller.GPTControllerImpl)))
+
+var LimitServiceSet = wire.NewSet(service.LimitServiceInit, wire.Bind(new(service.LimitService), new(*service.LimitServiceImpl)))
+
+var LimitCtrlSet = wire.NewSet(controller.LimitControllerInit, wire.Bind(new(controller.LimitController), new(*controller.LimitControllerImpl)))

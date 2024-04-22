@@ -1,10 +1,10 @@
 package main
 
 import (
+	"github.com/APSN4/RAG-model-go/app/router"
+	"github.com/APSN4/RAG-model-go/config"
 	"github.com/joho/godotenv"
 	"os"
-	"rag-model/app/router"
-	"rag-model/config"
 )
 
 func init() {

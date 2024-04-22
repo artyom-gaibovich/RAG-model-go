@@ -1,8 +1,8 @@
 package repository
 
 import (
+	"github.com/APSN4/RAG-model-go/app/domain/dao"
 	"gorm.io/gorm"
-	"rag-model/app/domain/dao"
 )
 
 type RoleRepository interface {

@@ -3,10 +3,10 @@ package proxy
 import (
 	"encoding/base64"
 	"fmt"
+	"github.com/APSN4/RAG-model-go/app/constant"
 	"golang.org/x/net/proxy"
 	"net/http"
 	"net/url"
-	"rag-model/app/constant"
 )
 
 func CreateProxy() *http.Client {

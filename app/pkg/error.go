@@ -3,7 +3,7 @@ package pkg
 import (
 	"errors"
 	"fmt"
-	"rag-model/app/constant"
+	"github.com/APSN4/RAG-model-go/app/constant"
 )
 
 func PanicException_(key string, message string) {

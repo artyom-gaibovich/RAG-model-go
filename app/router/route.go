@@ -1,8 +1,8 @@
 package router
 
 import (
+	"github.com/APSN4/RAG-model-go/config"
 	"github.com/gin-gonic/gin"
-	"rag-model/config"
 )
 
 func Init(init *config.Initialization) *gin.Engine {

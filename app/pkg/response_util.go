@@ -1,8 +1,8 @@
 package pkg
 
 import (
-	"rag-model/app/constant"
-	"rag-model/app/domain/dto"
+	"github.com/APSN4/RAG-model-go/app/constant"
+	"github.com/APSN4/RAG-model-go/app/domain/dto"
 )
 
 func Null() interface{} {

@@ -32,6 +32,8 @@ type Proxy string
 type ProxyUsername string
 type ProxyPassword string
 
+type LimitCharacters uint16
+
 const (
 	PromptConnectText ActionPrompt = iota + 1
 	PromptDelAdvText
@@ -76,6 +78,15 @@ func (p ProxyPassword) getProxyPassword() string {
 
 func GetTextPrompt(prompt ActionPrompt) string {
 	return prompt.getTextPrompt()
+}
+
+func GetLimitCharacters() string {
+	limitCharacters := LimitCharacters(4096)
+	return limitCharacters.getLimitCharacters()
+}
+
+func (l LimitCharacters) getLimitCharacters() string {
+	return os.Getenv("LIMIT_CHARACTERS")
 }
 
 func (a ActionPrompt) getTextPrompt() string {

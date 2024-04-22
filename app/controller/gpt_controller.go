@@ -1,8 +1,8 @@
 package controller
 
 import (
+	"github.com/APSN4/RAG-model-go/app/service"
 	"github.com/gin-gonic/gin"
-	"rag-model/app/service"
 )
 
 type GPTController interface {

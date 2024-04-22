@@ -43,3 +43,7 @@ updated_at TIMESTAMPTZ DEFAULT current_timestamp,
 deleted_at TIMESTAMPTZ
 );
 ```
+
+### google/wire
+
+Windows: `go run github.com/google/wire/cmd/wire .\config\` where `.\config\` is folder

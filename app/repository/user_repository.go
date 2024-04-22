@@ -1,9 +1,9 @@
 package repository
 
 import (
+	"github.com/APSN4/RAG-model-go/app/domain/dao"
 	log "github.com/sirupsen/logrus"
 	"gorm.io/gorm"
-	"rag-model/app/domain/dao"
 )
 
 type UserRepository interface {

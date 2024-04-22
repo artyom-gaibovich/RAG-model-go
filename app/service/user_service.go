@@ -2,13 +2,13 @@ package service
 
 import (
 	"fmt"
+	"github.com/APSN4/RAG-model-go/app/constant"
+	"github.com/APSN4/RAG-model-go/app/domain/dao"
+	"github.com/APSN4/RAG-model-go/app/pkg"
+	"github.com/APSN4/RAG-model-go/app/repository"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"net/http"
-	"rag-model/app/constant"
-	"rag-model/app/domain/dao"
-	"rag-model/app/pkg"
-	"rag-model/app/repository"
 	"reflect"
 	"strconv"
 	"time"
