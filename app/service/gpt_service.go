@@ -9,6 +9,7 @@ import (
 	"rag-model/app/constant"
 	"rag-model/app/domain/dto"
 	"rag-model/app/pkg"
+	"rag-model/config/proxy"
 	"strings"
 )
 
@@ -26,7 +27,9 @@ func (g GPTServiceImpl) GenerateText(c *gin.Context) {
 		pkg.PanicException(constant.InvalidRequest)
 	}
 
-	client := openai.NewClient(constant.GetApiKeyGPT())
+	configOpenai := openai.DefaultConfig(constant.GetApiKeyGPT())
+	configOpenai.HTTPClient = proxy.CreateProxy()
+	client := openai.NewClientWithConfig(configOpenai)
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{

@@ -28,6 +28,10 @@ func (r ResponseStatus) GetResponseMessage() string {
 type ApiKeyGPT string
 type ActionPrompt int
 
+type Proxy string
+type ProxyUsername string
+type ProxyPassword string
+
 const (
 	PromptConnectText ActionPrompt = iota + 1
 	PromptDelAdvText
@@ -39,8 +43,35 @@ func GetApiKeyGPT() string {
 	return apiKey.getApiKeyGPT()
 }
 
+func GetProxy() string {
+	proxy := Proxy("")
+	return proxy.getProxy()
+}
+
+func GetProxyUsername() string {
+	proxyUsername := ProxyUsername("")
+	return proxyUsername.getProxyUsername()
+}
+
+func GetProxyPassword() string {
+	proxyPassword := ProxyPassword("")
+	return proxyPassword.getProxyPassword()
+}
+
 func (a ApiKeyGPT) getApiKeyGPT() string {
 	return os.Getenv("API_KEY_GPT")
+}
+
+func (p Proxy) getProxy() string {
+	return os.Getenv("PROXY")
+}
+
+func (p ProxyUsername) getProxyUsername() string {
+	return os.Getenv("PROXY_USERNAME")
+}
+
+func (p ProxyPassword) getProxyPassword() string {
+	return os.Getenv("PROXY_PASSWORD")
 }
 
 func GetTextPrompt(prompt ActionPrompt) string {
