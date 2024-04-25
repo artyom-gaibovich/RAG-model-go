@@ -45,7 +45,15 @@ var LimitCtrlSet = wire.NewSet(controller.LimitControllerInit,
 	wire.Bind(new(controller.LimitController), new(*controller.LimitControllerImpl)),
 )
 
+var ChangeAPIServiceSet = wire.NewSet(service.ChangeAPIServiceInit,
+	wire.Bind(new(service.ChangeAPIService), new(*service.ChangeAPIServiceImpl)),
+)
+
+var ChangeAPICtrlSet = wire.NewSet(controller.ChangeAPIControllerInit,
+	wire.Bind(new(controller.ChangeAPIController), new(*controller.ChangeAPIControllerImpl)),
+)
+
 func Init() *Initialization {
-	wire.Build(NewInitialization, db, userCtrlSet, userServiceSet, userRepoSet, roleRepoSet, GPTCtrlSet, GPTServiceSet, LimitCtrlSet, LimitServiceSet)
+	wire.Build(NewInitialization, db, userCtrlSet, userServiceSet, userRepoSet, roleRepoSet, GPTCtrlSet, GPTServiceSet, LimitCtrlSet, LimitServiceSet, ChangeAPICtrlSet, ChangeAPIServiceSet)
 	return nil
 }

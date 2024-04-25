@@ -7,14 +7,16 @@ import (
 )
 
 type Initialization struct {
-	userRepo  repository.UserRepository
-	userSvc   service.UserService
-	UserCtrl  controller.UserController
-	RoleRepo  repository.RoleRepository
-	gptSvc    service.GPTService
-	GPTCtrl   controller.GPTController
-	LimitSvc  service.LimitService
-	LimitCtrl controller.LimitController
+	userRepo      repository.UserRepository
+	userSvc       service.UserService
+	UserCtrl      controller.UserController
+	RoleRepo      repository.RoleRepository
+	gptSvc        service.GPTService
+	GPTCtrl       controller.GPTController
+	LimitSvc      service.LimitService
+	LimitCtrl     controller.LimitController
+	ChangeAPICtrl controller.ChangeAPIController
+	ChangeAPISvc  service.ChangeAPIService
 }
 
 func NewInitialization(userRepo repository.UserRepository,
@@ -24,15 +26,19 @@ func NewInitialization(userRepo repository.UserRepository,
 	gptSvc service.GPTService,
 	GPTCtrl controller.GPTController,
 	LimitSvc service.LimitService,
-	LimitCtrl controller.LimitController) *Initialization {
+	LimitCtrl controller.LimitController,
+	ChangeAPICtrl controller.ChangeAPIController,
+	ChangeAPICtrlSvc service.ChangeAPIService) *Initialization {
 	return &Initialization{
-		userRepo:  userRepo,
-		userSvc:   userService,
-		UserCtrl:  userCtrl,
-		RoleRepo:  roleRepo,
-		gptSvc:    gptSvc,
-		GPTCtrl:   GPTCtrl,
-		LimitSvc:  LimitSvc,
-		LimitCtrl: LimitCtrl,
+		userRepo:      userRepo,
+		userSvc:       userService,
+		UserCtrl:      userCtrl,
+		RoleRepo:      roleRepo,
+		gptSvc:        gptSvc,
+		GPTCtrl:       GPTCtrl,
+		LimitSvc:      LimitSvc,
+		LimitCtrl:     LimitCtrl,
+		ChangeAPISvc:  ChangeAPICtrlSvc,
+		ChangeAPICtrl: ChangeAPICtrl,
 	}
 }

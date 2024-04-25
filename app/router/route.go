@@ -22,6 +22,8 @@ func Init(init *config.Initialization) *gin.Engine {
 
 		gpt := api.Group("/gpt")
 		gpt.POST("/generate", init.GPTCtrl.GenerateText)
+		service := api.Group("/service")
+		service.POST("/api", init.ChangeAPICtrl.ChangeAPI)
 
 		userComponents := api.Group("/component")
 		userComponents.GET("/:userID", init.UserCtrl.UpdateComponentUserData)

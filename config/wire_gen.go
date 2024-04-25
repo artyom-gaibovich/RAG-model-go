@@ -7,10 +7,10 @@
 package config
 
 import (
-	"github.com/google/wire"
 	"github.com/APSN4/RAG-model-go/app/controller"
 	"github.com/APSN4/RAG-model-go/app/repository"
 	"github.com/APSN4/RAG-model-go/app/service"
+	"github.com/google/wire"
 )
 
 // Injectors from injector.go:
@@ -25,7 +25,9 @@ func Init() *Initialization {
 	gptControllerImpl := controller.GPTControllerInit(gptServiceImpl)
 	limitServiceImpl := service.LimitServiceInit()
 	limitControllerImpl := controller.LimitControllerInit(limitServiceImpl)
-	initialization := NewInitialization(userRepositoryImpl, userServiceImpl, userControllerImpl, roleRepositoryImpl, gptServiceImpl, gptControllerImpl, limitServiceImpl, limitControllerImpl)
+	changeAPIServiceImpl := service.ChangeAPIServiceInit()
+	changeAPIControllerImpl := controller.ChangeAPIControllerInit(changeAPIServiceImpl)
+	initialization := NewInitialization(userRepositoryImpl, userServiceImpl, userControllerImpl, roleRepositoryImpl, gptServiceImpl, gptControllerImpl, limitServiceImpl, limitControllerImpl, changeAPIControllerImpl, changeAPIServiceImpl)
 	return initialization
 }
 
@@ -48,3 +50,7 @@ var GPTCtrlSet = wire.NewSet(controller.GPTControllerInit, wire.Bind(new(control
 var LimitServiceSet = wire.NewSet(service.LimitServiceInit, wire.Bind(new(service.LimitService), new(*service.LimitServiceImpl)))
 
 var LimitCtrlSet = wire.NewSet(controller.LimitControllerInit, wire.Bind(new(controller.LimitController), new(*controller.LimitControllerImpl)))
+
+var ChangeAPIServiceSet = wire.NewSet(service.ChangeAPIServiceInit, wire.Bind(new(service.ChangeAPIService), new(*service.ChangeAPIServiceImpl)))
+
+var ChangeAPICtrlSet = wire.NewSet(controller.ChangeAPIControllerInit, wire.Bind(new(controller.ChangeAPIController), new(*controller.ChangeAPIControllerImpl)))
