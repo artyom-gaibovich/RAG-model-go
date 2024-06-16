@@ -5,6 +5,12 @@
 **Programming language**: _Go_  
 **DI**: _google/wire_
 
+### Run && Build quick
+
+1. `docker build -t server_generation .`
+2. `docker run -p 8080:8080 server_generation`
+
+
 ### How to start
 
 `go run main.go`
@@ -30,18 +36,6 @@ DB_DSN="host=localhost user=root password=root dbname=rag-model-api port=5432"
 
 # Logging
 LOG_LEVEL=DEBUG
-```
-
-### Database structure
-
-base_models  
-```
-CREATE TABLE IF NOT EXISTS base_models (
-id SERIAL PRIMARY KEY NOT NULL,
-created_at TIMESTAMPTZ DEFAULT current_timestamp,
-updated_at TIMESTAMPTZ DEFAULT current_timestamp,
-deleted_at TIMESTAMPTZ
-);
 ```
 
 ### google/wire
