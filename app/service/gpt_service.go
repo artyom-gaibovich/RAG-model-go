@@ -64,20 +64,7 @@ func promptAgentTexts(textSlice []string, modeGen string) (string, error) {
 		log.Error("Error len text > ", constant.GetLimitCharacters())
 		return "err", errors.New("error len text")
 	}
-	var mode string
-
-	switch modeGen {
-	case "PromptConnectText":
-		mode = constant.GetTextPrompt(constant.PromptConnectText)
-	case "PromptDelAdvText":
-		mode = constant.GetTextPrompt(constant.PromptDelAdvText)
-	case "PromptChangeText":
-		mode = constant.GetTextPrompt(constant.PromptChangeText)
-	default:
-		mode = constant.GetTextPrompt(constant.PromptConnectText)
-	}
-
-	modeArticle := []string{mode, readyArticle}
+	modeArticle := []string{modeGen, readyArticle}
 	modeArticleReady := createOneFullText(modeArticle)
 	fmt.Println(modeArticleReady)
 	return modeArticleReady, nil
